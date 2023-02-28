@@ -1,35 +1,42 @@
 package searchengine.model;
 
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "site")
-public class SiteSQL {
+@Entity(name = "site")
+@NoArgsConstructor
+@Getter
+@Setter
+public class SiteSql {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "INT")
+    @Column(columnDefinition = "INT"/*, nullable = false, unique = true*/)
+    /*@OneToMany(cascade = CascadeType.ALL)*/
     private int id;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "enum")
+    @Column(columnDefinition = "enum", nullable = false)
     private SiteIndexingStatus status;
 
-    @Column(name = "status_time", columnDefinition = "DATETIME")
+    @Column(name = "status_time", columnDefinition = "DATETIME", nullable = false)
     private LocalDateTime statusTime;
 
     @Column(name = "last_error", columnDefinition = "TEXT")
     private String lastError;
 
-    @Column(columnDefinition = "VARCHAR(255)")
+    @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String url;
 
-    @Column(columnDefinition = "VARCHAR(255)")
+    @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     private String name;
 
-    public SiteSQL() {
+    /*public SiteSql() {
     }
 
     public int getId() {
@@ -78,5 +85,5 @@ public class SiteSQL {
 
     public void setName(String name) {
         this.name = name;
-    }
+    }*/
 }

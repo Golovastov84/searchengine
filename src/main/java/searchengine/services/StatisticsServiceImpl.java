@@ -40,12 +40,14 @@ public class StatisticsServiceImpl implements StatisticsService {
             DetailedStatisticsItem item = new DetailedStatisticsItem();
             item.setName(site.getName());
             item.setUrl(site.getUrl());
+            // fix code, del random
             int pages = random.nextInt(1_000);
             int lemmas = pages * random.nextInt(1_000);
             item.setPages(pages);
             item.setLemmas(lemmas);
             item.setStatus(statuses[i % 3]);
             item.setError(errors[i % 3]);
+            // fix code, del random
             item.setStatusTime(System.currentTimeMillis() -
                     (random.nextInt(10_000)));
             total.setPages(total.getPages() + pages);

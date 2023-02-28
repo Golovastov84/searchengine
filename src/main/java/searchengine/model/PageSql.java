@@ -1,30 +1,38 @@
 package searchengine.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
-@Entity
-@Table(name = "page")
-public class PageSQL {
+@Entity(name = "page")
+@NoArgsConstructor
+@Getter
+@Setter
+public class PageSql {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "INT")
     private int id;
 
-    @Column(name = "site_id", columnDefinition = "INT")
-//    надо добавить связь с site
-    private int siteId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @Column(name = "site_id", columnDefinition = "INT")
+//    надо добавить связь с siteSQL
+    @JoinColumn(name = "site_id", nullable = false)
+    private SiteSql siteSql;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String path;
 
-    @Column(columnDefinition = "INT")
+    @Column(columnDefinition = "INT", nullable = false)
     private int code;
 
-    @Column(columnDefinition = "MEDIUMTEXT")
+    @Column(columnDefinition = "MEDIUMTEXT", nullable = false)
     private String content;
 
-    public PageSQL() {
+    /*public PageSql() {
     }
 
     public int getId() {
@@ -35,12 +43,12 @@ public class PageSQL {
         this.id = id;
     }
 
-    public int getSiteId() {
-        return siteId;
+    public SiteSql getSiteId() {
+        return siteSql;
     }
 
-    public void setSiteId(int siteId) {
-        this.siteId = siteId;
+    public void setSiteId(SiteSql siteSql) {
+        this.siteSql = siteSql;
     }
 
     public String getPath() {
@@ -65,5 +73,5 @@ public class PageSQL {
 
     public void setContent(String content) {
         this.content = content;
-    }
+    }*/
 }
